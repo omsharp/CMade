@@ -2,16 +2,41 @@
 #### /src ####
 ##############
 
-# set global (project wide) include (headers) directory
-# include_directories(./include)
+# a prefix for every module in the project.
+# will be added to the binaries file name
+# leave it blank if you don't want to add a prefix.
+set(MODULE_PREFIX "_m_")
 
-# add subdirectories of modules.
-# each subdirectory has its own CMakeLists.txt that will be processed immediatly.
-add_subdirectory(ModuleA) # add and process ModuleA's CMakeLists.txt
-add_subdirectory(ModuleB) # add and process ModuleB's CMakeLists.txt
+# a golbal property that holds a list of all modules in project
+set_property(GLOBAL PROPERTY modules_list)
+
+# add a module to the module_list property
+# this function is called by the module's cmake file
+function(add_module module)
+    get_property(temp GLOBAL PROPERTY modules_list)
+    list(APPEND temp ${module})
+    set_property(GLOBAL PROPERTY modules_list "${temp}")
+endfunction(add_module)
+
+# build the name of the module based on its directory,
+# and adds the MODULE_PREFIX to it.
+# this function is called by the module's cmake file
+function(set_module_name out_name)
+    set(temp)
+    cmake_path(GET CMAKE_CURRENT_LIST_DIR FILENAME temp)   
+    string(REPLACE " " "_" ProjectId ${temp})
+    set(${out_name} "${MODULE_PREFIX}${temp}" PARENT_SCOPE)
+endfunction(set_module_name)
+
+# add the main subdirectories
+add_subdirectory(modules)
+add_subdirectory(utils)
 
 # add main executable
-add_executable(${PROJECT_NAME} main.c)
+add_executable(${PROJECT_NAME} main.c) 
 
-# link mudules as static libraries to the main executable
-target_link_libraries(${PROJECT_NAME} ModuleA ModuleB)
+# get the list of all modules in the project
+get_property(mods_list GLOBAL PROPERTY modules_list)
+
+# link modules as static libraries to the main executable
+target_link_libraries(${PROJECT_NAME} ${mods_list})

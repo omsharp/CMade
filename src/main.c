@@ -1,12 +1,23 @@
-#include "ModuleA.h"
-#include "ModuleB.h"
+#include "Sorting.h"
+#include "Stats.h"
 #include "stdio.h"
 
+#define LEN 4
+
 int main() {
-  int values[5] = {142, -5, 734, 5, 44};
-  printf("  values: %d, %d, %d, %d, %d\n", values[0], values[1], values[2],
-         values[3], values[4]);
-  printf(" largest: %d\n", find_max_int(values, 5));
-  printf("smallest: %d\n", find_min_int(values, 5));
+  double values[LEN] = {142.0, -5.0, 734.0, 5.0};
+  printf("Values: ");
+  for (size_t i = 0; i < LEN; i++) {
+    printf("%f,  ", values[i]);
+  }
+
+  printf("\nMedian: %f", find_median(values, 5));
+
+  quickSort(values, 0, LEN - 1);
+  printf("\nSorted: ");
+  for (size_t i = 0; i < LEN; i++) {
+    printf("%f,  ", values[i]);
+  }
+
   return EXIT_SUCCESS;
 }

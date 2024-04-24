@@ -33,6 +33,9 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${FullOutputDir}")
 # path of tests binaries
 set(CMAKE_TESTS_OUTPUT_DIRECTORY "${FullOutputDir}/tests")
 
+# set project-wide include (headers) directory
+include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
+
 # add lists in /src
 add_subdirectory(src)
 
