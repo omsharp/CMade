@@ -2,27 +2,40 @@
 #include "Sorting.h"
 
 static void swap(double* a, double* b);
-static int partition(double arr[], size_t low, size_t high);
+static int partition(double arr[], int low, int high);
 
 void quickSort(double arr[], size_t low, size_t high) {
   if (low < high) {
-    size_t pi = partition(arr, low, high);
+    int pi = partition(arr, low, high);
     quickSort(arr, low, pi - 1);
     quickSort(arr, pi + 1, high);
   }
 }
 
-static int partition(double arr[], size_t low, size_t high) {
-  double pivot = arr[high];
-  size_t i = low - 1;
-  for (size_t j = low; j < high; j++) {
-    if (arr[j] < pivot) {
+int partition(double arr[], int low, int high) {
+  // initialize pivot to be the first element
+  int pivot = arr[low];
+  int i = low;
+  int j = high;
+
+  while (i < j) {
+    // condition 1: find the first element greater than
+    // the pivot (from starting)
+    while (arr[i] <= pivot && i <= high - 1) {
       i++;
+    }
+
+    // condition 2: find the first element smaller than
+    // the pivot (from last)
+    while (arr[j] > pivot && j >= low + 1) {
+      j--;
+    }
+    if (i < j) {
       swap(&arr[i], &arr[j]);
     }
   }
-  swap(&arr[i + 1], &arr[high]);
-  return i + 1;
+  swap(&arr[low], &arr[j]);
+  return j;
 }
 
 static void swap(double* a, double* b) {

@@ -43,4 +43,13 @@ add_subdirectory(src)
 target_compile_options(${PROJECT_NAME} PRIVATE
     -Wall
     -Wextra
-    -Wpedantic)
+    -Wpedantic
+    )
+
+# CTest sets BUILD_TESTING option to ON by default.
+# Test-related configuration goes here.
+include(CTest)
+if(BUILD_TESTING)
+    enable_testing()
+    add_subdirectory(tests)
+endif()

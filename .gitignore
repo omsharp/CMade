@@ -4,10 +4,6 @@
 #cmake build dir
 /build
 
-# tests binaraies and build dirs
-tests/bin
-tests/build
-
 #vscode
 .vscode/*
 #.vscode/settings.json

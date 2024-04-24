@@ -2,10 +2,11 @@
 #include "Stats.h"
 #include "stdio.h"
 
-#define LEN 4
+#define LEN 5
 
 int main() {
-  double values[LEN] = {142.0, -5.0, 734.0, 5.0};
+  double values[LEN] = {3.21, 3.41, 3.11, 3.31, 3.01};
+  // double array[] = {3.21, 3.41, 3.11, 3.31, 3.01};
   printf("Values: ");
   for (size_t i = 0; i < LEN; i++) {
     printf("%f,  ", values[i]);

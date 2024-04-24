@@ -2,7 +2,8 @@
 ### /tests ####
 ###############
 
-# Include Unity test framework.
-add_subdirectory(unity)
+# add Unity subdirectory
+add_subdirectory(_unity) 
 
+# add suites subdirectory
 add_subdirectory(suite_1)
