@@ -1,10 +1,13 @@
-cmake_minimum_required(VERSION 3.0.0)
+###############
+#### /root ####
+###############
+cmake_minimum_required(VERSION 3.25.0)
 
 # C standard
 set(CMAKE_C_STANDARD 17)
 
 # project name (main executable file name)
-project(program)
+project("C_Example")
 
 # determine OS bitness
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
@@ -24,27 +27,17 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${FullOutputDir}/static libs")
 
 # path of the dynamic libraries. (to be shipped with executable)
+# will be the same as the executables path
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${FullOutputDir}")
 
-# set the include (headers) directory
-include_directories(./include)
+# path of tests binaries
+set(CMAKE_TESTS_OUTPUT_DIRECTORY "${FullOutputDir}/tests")
 
-# set the source code files
-add_executable(${PROJECT_NAME}
-    src/main.c
-    src/greeter.c)
-
-# add a shared (dynamic) libaray
-# add_library("[_myLibraryName]" SHARED [source path])
-
-# add a static library
-# add_library("[_myLibraryName]" STATIC [source path])
-
-# link a library to the project
-# target_link_libraries(${PROJECT_NAME} "[_libraryName]")
+# add lists in /src
+add_subdirectory(src)
 
 # compiler flags
-target_compile_options(program PRIVATE
+target_compile_options(${PROJECT_NAME} PRIVATE
     -Wall
     -Wextra
     -Wpedantic)
