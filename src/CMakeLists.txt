@@ -2,11 +2,6 @@
 #### /src ####
 ##############
 
-# a prefix for every module in the project.
-# will be added to the binaries file name
-# leave it blank if you don't want to add a prefix.
-set(MODULE_PREFIX "_m_")
-
 # a golbal property that holds a list of all modules in project
 set_property(GLOBAL PROPERTY modules_list)
 
@@ -25,7 +20,7 @@ function(set_module_name out_name)
     set(temp)
     cmake_path(GET CMAKE_CURRENT_LIST_DIR FILENAME temp)   
     string(REPLACE " " "_" ProjectId ${temp})
-    set(${out_name} "${MODULE_PREFIX}${temp}" PARENT_SCOPE)
+    set(${out_name} "${temp}" PARENT_SCOPE)
 endfunction(set_module_name)
 
 # add the main subdirectories
