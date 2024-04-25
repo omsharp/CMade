@@ -1,11 +1,11 @@
-######################
-#### /src/utils ####
-######################
+# #####################
+# ### /src/utils ####
+# #####################
 
 # sets module name based on directory
-set_module_name(MODULE_NAME)
+get_current_directory_name(MODULE_NAME)
 
-# add utils source files to meke utils module library
+# add module as a static library using its source files
 add_library(${MODULE_NAME} STATIC
     NullPointerGuard.c
     CopyArray_Double.c

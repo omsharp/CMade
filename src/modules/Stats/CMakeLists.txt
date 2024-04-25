@@ -1,12 +1,12 @@
-###########################
-#### /src/Module_Stats ####
-###########################
+# ##########################
+# ### /src/Module_Stats ####
+# ##########################
 
 # sets module name based on directory
-set_module_name(MODULE_NAME)
+get_current_directory_name(MODULE_NAME)
 
-# add module as a static library
-add_library(${MODULE_NAME} STATIC 
+# add module as a static library using its source files
+add_library(${MODULE_NAME} STATIC
     Median.c
 )
 

@@ -24,7 +24,7 @@ function(add_test_suite tested_module_name test_source_list)
             ${tested_module_name}
         )
 
-        # the indlude directory of the Unity framework
+        # the include directory of the Unity framework
         target_include_directories(${test_name}
             PUBLIC
             ${PROJECT_SOURCE_DIR}/tests/_unity

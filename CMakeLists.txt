@@ -3,6 +3,9 @@
 # ##############
 cmake_minimum_required(VERSION 3.20.0)
 
+# sets the global variable for tools path
+set(Tools_Path "${CMAKE_CURRENT_LIST_DIR}/tools/cmake")
+
 # C standard
 set(CMAKE_C_STANDARD 17)
 
