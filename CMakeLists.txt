@@ -5,6 +5,7 @@ cmake_minimum_required(VERSION 3.20.0)
 
 set(CMAKE_C_STANDARD 17)
 
+# project name (main executable name)
 project(C_Example)
 
 # determine OS bitness
@@ -16,20 +17,27 @@ endif()
 
 # build output directory based on OS and build type.
 # (example: bin/Linux_64/Debug)
-set(BINARIES_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/${CMAKE_SYSTEM_NAME}_${OSBitness}/${CMAKE_BUILD_TYPE}")
+set(BINARIES_OUTPUT_DIRECTORY
+    "${CMAKE_SOURCE_DIR}/bin/${CMAKE_SYSTEM_NAME}_${OSBitness}/${CMAKE_BUILD_TYPE}"
+)
 
 # path of the executable
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${BINARIES_OUTPUT_DIRECTORY}")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
+    "${BINARIES_OUTPUT_DIRECTORY}"
+)
 
 # path of the static libraries. (will be embedded in executable)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${BINARIES_OUTPUT_DIRECTORY}/static libs")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY
+    "${BINARIES_OUTPUT_DIRECTORY}/static libs"
+)
 
 # path of the dynamic libraries. (seperate files to be shipped with executable)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${BINARIES_OUTPUT_DIRECTORY}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY
+    "${BINARIES_OUTPUT_DIRECTORY}"
+)
 
 # project-wide include (headers) directory
 include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
-
 add_subdirectory(src)
 
 # compiler flags

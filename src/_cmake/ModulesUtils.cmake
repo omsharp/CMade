@@ -25,3 +25,12 @@ function(add_module_static)
     list(APPEND temp ${module_name})
     set_property(GLOBAL PROPERTY modules_list ${temp})
 endfunction(add_module_static)
+
+# links all the added modules to the project executable
+function(link_project_modules)
+    # get the list of all modules in the project and
+    get_property(modules GLOBAL PROPERTY modules_list)
+
+    # link modules to the project executable
+    target_link_libraries(${PROJECT_NAME} ${modules})
+endfunction(link_project_modules)
