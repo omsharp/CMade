@@ -1,5 +1,5 @@
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef M_UTILS_H
+#define M_UTILS_H
 #include "stdlib.h"
 
 void Null_Pointer_Guard(void *ptr, char *file, int number);
