@@ -1,5 +1,6 @@
-# link module to other modules that it depends on
-macro(depends_on)
+# modules that this module depends on.
+# module_depends_on([<module>...])
+function(module_depends_on)
   # extract directory name in module_name and replaces white space with '_'
   cmake_path(GET CMAKE_CURRENT_LIST_DIR FILENAME module_name)
   string(REPLACE " " "_" module_name ${module_name})
@@ -8,12 +9,11 @@ macro(depends_on)
   target_link_libraries(${module_name}
     ${ARGV}
   )
-endmacro()
+endfunction()
 
-# adds source files as a static library and link it to main executable.
-# using the caller's directory as a module name.
-# add_modules_sources([<source>...])
-function(add_modules_sources)
+# source files of this module.
+# modules_sources([<source>...])
+function(module_sources)
   # extract the current directory name into module_name to be used as module's name
   cmake_path(GET CMAKE_CURRENT_LIST_DIR FILENAME module_name)
 

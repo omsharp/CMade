@@ -1,5 +1,7 @@
 #include <unity.h>
+#include "Sorting.h"
 #include "Stats.h"
+#include "Utilities.h"
 
 void setUp(void) {}
 void tearDown(void) {}

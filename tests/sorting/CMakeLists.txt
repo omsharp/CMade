@@ -2,6 +2,12 @@
 # ## tests/sorting ###
 # ####################
 
-add_test_suite_for_module(Sorting
-  bubbleSort.c
+# todo)) group test nameing...
+# tests_set_group_name("Sorting_Tests")
+
+tests_sources(
+  bubbleSort_1.c
+  bubbleSort_2.c
 )
+
+tests_depends_on(Sorting Stats)

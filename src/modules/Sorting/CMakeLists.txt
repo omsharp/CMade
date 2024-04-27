@@ -2,8 +2,8 @@
 # ### /src/Sorting ####
 # #####################
 
-add_modules_sources(
+module_sources(
   BubbleSort.c
 )
 
-depends_on(Utils)
+module_depends_on(Utils)

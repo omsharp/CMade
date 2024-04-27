@@ -2,11 +2,11 @@
 # ### /src/Stats ####
 # ###################
 
-add_modules_sources(
+module_sources(
   Median.c
 )
 
-depends_on(
+module_depends_on(
   Sorting
   Utils
 )

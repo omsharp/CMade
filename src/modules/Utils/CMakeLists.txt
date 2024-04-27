@@ -2,7 +2,7 @@
 # ### /src/utils ####
 # ###################
 
-add_modules_sources(
+module_sources(
   NullPointerGuard.c
   CopyArray_Double.c
 )

@@ -2,6 +2,8 @@
 # ## tests/sorting ###
 # ####################
 
-add_test_suite_for_module(Stats
+tests_sources(
   median.c
 )
+
+tests_depends_on(Stats)
