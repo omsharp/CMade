@@ -10,7 +10,7 @@ macro(process_current_file)
 
   set(test_name "${directory_name}_${file_name}")
 
-  add_executable(${test_name} ${file})
+  add_executable(${test_name} ${file} "../_unity/unity.c")
 
   # the include directory of the Unity framework
   target_include_directories(${test_name}
@@ -45,12 +45,10 @@ function(add_test_suite_for_module module_name)
   # go through test source files,
   # process and build a test for each source file
   foreach(file ${ARGV})
-    # macro: process the curren test source file
     process_current_file()
 
     # link Unity and the tested module as a libraries to test
     target_link_libraries(${test_name}
-      Unity
       ${module_name}
     )
   endforeach()
@@ -66,12 +64,6 @@ function(add_test_suite)
   # go through test source files,
   # process and build a test for each source file
   foreach(file ${ARGV})
-    # macro: process the curren test source file
     process_current_file()
-
-    # link the unity framework as a library
-    target_link_libraries(${test_name}
-      Unity
-    )
   endforeach()
 endfunction()
