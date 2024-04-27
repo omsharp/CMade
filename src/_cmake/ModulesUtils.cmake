@@ -1,7 +1,21 @@
+# a global property to hold a list of all modules in the project
+set_property(GLOBAL PROPERTY modules_list)
+
+macro(depends_on)
+  # extract directory name in module_name and replaces white space with '_'
+  cmake_path(GET CMAKE_CURRENT_LIST_DIR FILENAME module_name)
+  string(REPLACE " " "_" module_name ${module_name})
+
+  # link module to dependencies (other modules)
+  target_link_libraries(${module_name}
+    ${ARGV}
+  )
+endmacro()
+
 # adds source files as a static library and link it to main executable.
 # using the caller's directory as a module name.
-# add_module_static([<source>...])
-function(add_module_static)
+# add_modules_sources([<source>...])
+function(add_modules_sources)
   # extract the current directory name into module_name to be used as module's name
   cmake_path(GET CMAKE_CURRENT_LIST_DIR FILENAME module_name)
 
@@ -24,4 +38,9 @@ function(add_module_static)
   target_link_libraries(${PROJECT_NAME}
     ${module_name}
   )
+
+  # append the new module to current global property modules_list
+  get_property(new_modules_list GLOBAL PROPERTY modules_list)
+  list(APPEND new_modules_list ${module_name})
+  set_property(GLOBAL PROPERTY modules_list ${new_modules_list})
 endfunction()

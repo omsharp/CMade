@@ -9,7 +9,7 @@ double find_median(const double* values, size_t len) {
   // copy values array
   double* temp = copy_array_double(values, len);
   // sort the copied array
-  quickSort(temp, 0, len - 1);
+  bubbleSort(temp, len);
   // find median
   double median = 0;
   if (len % 2 == 0) {

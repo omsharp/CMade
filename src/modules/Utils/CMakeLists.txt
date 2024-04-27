@@ -2,7 +2,7 @@
 # ### /src/utils ####
 # ###################
 
-add_module_static(
-    NullPointerGuard.c
-    CopyArray_Double.c
+add_modules_sources(
+  NullPointerGuard.c
+  CopyArray_Double.c
 )

@@ -14,7 +14,7 @@ int main() {
 
   printf("\nMedian: %f", find_median(values, 5));
 
-  quickSort(values, 0, LEN - 1);
+  bubbleSort(values, LEN);
   printf("\nSorted: ");
   for (size_t i = 0; i < LEN; i++) {
     printf("%f,  ", values[i]);

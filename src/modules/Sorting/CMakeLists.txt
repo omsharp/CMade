@@ -2,6 +2,8 @@
 # ### /src/Sorting ####
 # #####################
 
-add_module_static(
-    QuickSort.c
+add_modules_sources(
+  BubbleSort.c
 )
+
+depends_on(Utils)

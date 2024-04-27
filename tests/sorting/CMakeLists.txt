@@ -3,6 +3,6 @@
 # ####################
 
 add_test_suite_for_module(Sorting
-  quicksort.c
+  bubbleSort.c
   test_2.c
 )
