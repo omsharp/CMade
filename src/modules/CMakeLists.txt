@@ -7,6 +7,7 @@
 # maybe I'll add a script that will touch cmake file after adding a module directory!
 add_subdirectory(Sorting)
 add_subdirectory(Stats)
+add_subdirectory(Utils)
 
 # [info] using globing to add subdirectories
 # will not inform cmake of the changes in the source tree,

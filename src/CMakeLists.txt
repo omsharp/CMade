@@ -9,4 +9,3 @@ include(_cmake/ModulesUtils.cmake)
 add_executable(${PROJECT_NAME} main.c)
 
 add_subdirectory(modules)
-add_subdirectory(utils)
