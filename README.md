@@ -15,8 +15,7 @@ An opinionated template, curated to build portable C projects, using modular cod
 
 <br/>
 
-## Create new project
-
+## Create new Project
 1. Clone this repo
 
         > git clone git@github.com:omsharp/cmake_template.git <your_project_name>
@@ -34,7 +33,7 @@ Find the line bellow and set your desired project name.
         
 <br/>
 
-## Build the project
+## Build the Project
 If you're building with VSCode, make sure to config your **CMake Tools** extension with your compiler first, and then build with **ctrl + shift + B**. VSCode will handle the build process.
 
 If You're using the terminal, then do this:
@@ -48,3 +47,37 @@ If You're using the terminal, then do this:
         > cmake --build ./build
 
 If all runs fine, you'll have a bin directory with the binaries. And from now on you'll only need to run the second command to build the project whenever you want, unless you deleted the build directory or it got corrupted for some reason, then you'll have to run the first command again to regenerate the build system.
+
+<br/>
+
+## Add Module
+1. Make a new directory inside **src/modules** and name it with your module's name, e.g. **Sorting**.
+
+2. Edit the file **src/modules/CMakeLists.txt** and at the end of file add your module's subdirectory. If you create Sorting module, then the new line should look something line
+
+        add_subdirectory(Sorting)
+
+3. In your Module's directory create a file **CMakeLists.txt**, inside it call the function **add_module_static** with the source files of your module, the file content should look something like:
+
+        add_module_static(
+          QuickSort.c
+          MergeSort.c
+        )
+
+<br/>
+
+## Add Test Suite for a Module
+1. Make a new directory inside **tests** and name it with your, e.g **sorting_tests**.
+
+2. Edit the file **src/tests/CMakeLists.txt** and at the end of file add your test suite subdirectory. The new line should look something line
+
+        add_subdirectory(sorting_tests)
+
+3. In your suite's directory create a file **CMakeLists.txt**, inside it call the function **add_test_suite_for_module**, the first parameter to that function should be your Module's name (directory's name) and then a list of all the source files in that suite. The file content should look something like:
+
+       add_test_suite_for_module(Sorting
+         QuickSort_test.c
+         MergeSort_test.c
+       )
+
+<br/>

@@ -9,13 +9,19 @@ function(add_module_static)
   string(REPLACE " " "_" module_name ${module_name})
 
   # add module as a static library using its source files
-  add_library(${module_name} STATIC
+  add_library(${module_name}
+    STATIC
     ${ARGV}
   )
 
   # include directory (current dir of this file)
-  target_include_directories(${module_name} PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+  target_include_directories(${module_name}
+    PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}
+  )
 
   # link module to the project executable
-  target_link_libraries(${PROJECT_NAME} ${module_name})
-endfunction(add_module_static)
+  target_link_libraries(${PROJECT_NAME}
+    ${module_name}
+  )
+endfunction()

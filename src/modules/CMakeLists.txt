@@ -2,13 +2,6 @@
 # ### /src/modules ####
 # #####################
 
-# [info] for now I'm settling with adding each module subdirectory manually
-# so that the build system will pick the change automatically.
-# maybe I'll add a script that will touch cmake file after adding a module directory!
-add_subdirectory(Sorting)
-add_subdirectory(Stats)
-add_subdirectory(Utils)
-
 # [info] using globing to add subdirectories
 # will not inform cmake of the changes in the source tree,
 # which means you'll have to touch a CMake file every time you add a module,
@@ -19,3 +12,10 @@ add_subdirectory(Utils)
 # add_subdirectory(${item})
 # endif()
 # endforeach()
+
+# [info] for now I'm settling with adding each module subdirectory manually
+# so that the build system will pick the change automatically.
+# maybe I'll add a script that will touch cmake file after adding a module directory!
+add_subdirectory(Sorting)
+add_subdirectory(Stats)
+add_subdirectory(Utils)

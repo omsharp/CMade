@@ -2,12 +2,11 @@
 # ## /tests ####
 # ##############
 
-# utilities
-include(_cmake/TestsUtils.cmake)
+include(_cmake/TestsUtils.cmake) # macros and functions
 
-# add Unity subdirectory
-add_subdirectory(_unity)
+add_subdirectory(_unity) # Unity testing framework source
 
-# add suites subdirectory
+# add test suites
 add_subdirectory(sorting)
+add_subdirectory(stats)
 add_subdirectory(some_tests)
