@@ -48,15 +48,10 @@ function(add_test_suite_for_module module_name)
     # macro: process the curren test source file
     process_current_file()
 
-    get_property(current_modules_list GLOBAL PROPERTY modules_list)
-    message("modules list for ${test_name}: ${current_modules_list}")
-
     # link Unity and the tested module as a libraries to test
     target_link_libraries(${test_name}
       Unity
-      Utils
-      Sorting
-      Stats
+      ${module_name}
     )
   endforeach()
 endfunction()

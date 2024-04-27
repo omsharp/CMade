@@ -1,6 +1,4 @@
-# a global property to hold a list of all modules in the project
-set_property(GLOBAL PROPERTY modules_list)
-
+# link module to other modules that it depends on
 macro(depends_on)
   # extract directory name in module_name and replaces white space with '_'
   cmake_path(GET CMAKE_CURRENT_LIST_DIR FILENAME module_name)
@@ -38,9 +36,4 @@ function(add_modules_sources)
   target_link_libraries(${PROJECT_NAME}
     ${module_name}
   )
-
-  # append the new module to current global property modules_list
-  get_property(new_modules_list GLOBAL PROPERTY modules_list)
-  list(APPEND new_modules_list ${module_name})
-  set_property(GLOBAL PROPERTY modules_list ${new_modules_list})
 endfunction()
