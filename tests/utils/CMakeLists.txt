@@ -3,8 +3,7 @@
 # ####################
 
 tests_sources(
-  bubbleSort_1.c
-  bubbleSort_2.c
+  copyArray.c
 )
 
-tests_depends_on(Sorting)
+tests_depends_on(Utils)

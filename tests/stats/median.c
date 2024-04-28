@@ -7,8 +7,9 @@ void setUp(void) {}
 void tearDown(void) {}
 
 void test_find_median(void) {
-  double values[] = {1.0, 2.0, 3.0, 4.0, 5.0};
-  TEST_ASSERT_EQUAL_DOUBLE(3, find_median(values, 5));
+  double values[] = {4.0, 2.0, 1.0, 3.0, 5.0};
+  double median = find_median(values, 5);
+  TEST_ASSERT_EQUAL_DOUBLE(3, median);
 }
 
 int main(void) {
