@@ -81,10 +81,12 @@ If all runs fine, you'll have a bin directory with the binaries. And from now on
 * Each directory in **/tests/suites** represents a test suite.
 * The name of the suite will be the name of the directory itself.
 * Every source file in a suite directory represents a test.
+* The test name will be the source file name without extension.
 * A suite should have at least one test. 
 * A test should have at least one unit of test (function).
 * The test's full name will be of the form **<suite_name>.<test_name>**.
-        
+* Refer to [Unity's](https://github.com/ThrowTheSwitch/Unity) repo for more information on how to write tests with Unity.
+
 #### Add a new test suite:
 1. Make a new directory inside **tests/suites** and name it with your, e.g **sorting** to be a test suite your **Sorting** module, and put your sorting tests source files in it.
 
@@ -103,7 +105,7 @@ If all runs fine, you'll have a bin directory with the binaries. And from now on
 
         tests_depends_on(Sorting)
 
-   ** **If your tests are not depending on any modules, then ognore this point.**
+   ** **If your tests are not depending on any modules, then ignore this step.**
 
 
 <br/>
