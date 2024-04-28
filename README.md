@@ -50,34 +50,60 @@ If all runs fine, you'll have a bin directory with the binaries. And from now on
 
 <br/>
 
-## Add Module
+## Modules
+* Each directory inside **src/modules** represents a module in the proejct.
+* The name of the module will be the name of the directory itself.
+
+#### Add new module:
 1. Make a new directory inside **src/modules** and name it with your module's name, e.g. **Sorting**.
 
 2. Edit the file **src/modules/CMakeLists.txt** and at the end of file add your module's subdirectory. If you create Sorting module, then the new line should look something line
 
         add_subdirectory(Sorting)
 
-3. In your Module's directory create a file **CMakeLists.txt**, inside it call the function **add_module_static** with the source files of your module, the file content should look something like:
+3. In your Module's directory create a file **CMakeLists.txt**, inside it call the function **module_sources** with the source files of your module, the file content should look something like:
 
-        add_module_static(
+        module_sources(
           QuickSort.c
           MergeSort.c
         )
+     
+     Then, if your module depends on other modules, then you'll have to call **module_depends_on()** with the names of all your dependencies (modules).
+
+        module_depends_on(
+          Utils
+        )
+
 
 <br/>
 
-## Add Test Suite for a Module
-1. Make a new directory inside **tests** and name it with your, e.g **sorting_tests**.
+## Tests
+* Each directory in **/tests/suites** represents a test suite.
+* The name of the suite will be the name of the directory itself.
+* Every source file in a suite directory represents a test.
+* A suite should have at least one test. 
+* A test should have at least one unit of test (function).
+* The test's full name will be of the form **<suite_name>.<test_name>**.
+        
+#### Add a new test suite:
+1. Make a new directory inside **tests/suites** and name it with your, e.g **sorting** to be a test suite your **Sorting** module, and put your sorting tests source files in it.
 
-2. Edit the file **src/tests/CMakeLists.txt** and at the end of file add your test suite subdirectory. The new line should look something line
+2. Edit the file **src/tests/suites/CMakeLists.txt** and add your suite's subdirectory.
 
-        add_subdirectory(sorting_tests)
+        add_subdirectory(sorting)
 
-3. In your suite's directory create a file **CMakeLists.txt**, inside it call the function **add_test_suite_for_module**, the first parameter to that function should be your Module's name (directory's name) and then a list of all the source files in that suite. The file content should look something like:
+3. In your suite's directory create a file **CMakeLists.txt**, inside it call the function **tests_sources()** with the source files for your tests.
 
-       add_test_suite_for_module(Sorting
-         QuickSort_test.c
-         MergeSort_test.c
-       )
+        tests_sources(
+          bubbleSort_1.c
+          bubbleSort_2.c
+        )
+
+4. Add dependencies for the test suite by calling **tests_depends_on()** and pass the names of the modules the tests are using.
+
+        tests_depends_on(Sorting)
+
+   ** **If your tests are not depending on any modules, then ognore this point.**
+
 
 <br/>
