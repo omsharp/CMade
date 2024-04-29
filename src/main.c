@@ -1,48 +1,23 @@
 #include <stdint.h>
-#include "Search.h"
-#include "Sorting.h"
-#include "Stats.h"
-#include "Utilities.h"
-#include "stdio.h"
+#include <stdio.h>
+#include "SDL.h"
 
-#define LEN 5
+int main(int argc, char *argv[]) {
+  SDL_Init(SDL_INIT_VIDEO);
 
-int main() {
-  double values[LEN] = {3.11, 3.41, 3.31, 3.23, 3.01};
-  // double array[] = {3.21, 3.41, 3.11, 3.31, 3.01};
-  printf("Values: ");
-  for (size_t i = 0; i < LEN; i++) {
-    printf("%f,  ", values[i]);
-  }
+  SDL_Window *window = SDL_CreateWindow("SDL2Test", SDL_WINDOWPOS_UNDEFINED,
+                                        SDL_WINDOWPOS_UNDEFINED, 640, 480, 0);
 
-  double* copy = copy_array_double(values, LEN);
-  printf("\nCopied: ");
-  for (size_t i = 0; i < LEN; i++) {
-    printf("%f,  ", copy[i]);
-  }
+  SDL_Renderer *renderer =
+      SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+  SDL_RenderClear(renderer);
+  SDL_RenderPresent(renderer);
 
-  double median = find_median(values, 5);
-  printf("\nMedian: %f", median);
+  SDL_Delay(3000);
 
-  bubble_sort_double(values, LEN);
-  printf("\nSorted: ");
-  for (size_t i = 0; i < LEN; i++) {
-    printf("%f,  ", values[i]);
-  }
+  SDL_DestroyWindow(window);
+  SDL_Quit();
 
-  int32_t values_int32[LEN] = {33, 434, 23, 66, 6321};
-  printf("\nvalues_int32: ");
-  for (size_t i = 0; i < LEN; i++) {
-    printf("%d,  ", values_int32[i]);
-  }
-
-  int32_t target = 23;
-  int32_t result = binary_search_int32(values_int32, LEN, target);
-  if (-1 == result) {
-    printf("\nThe value %d was not found in values_int32", target);
-  } else {
-    printf("\nThe value %d was found in values_int32 at index %d.", target,
-           result);
-  }
-  return EXIT_SUCCESS;
+  return 0;
 }
