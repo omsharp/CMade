@@ -3,7 +3,7 @@ An opinionated template, curated to build portable C projects, using modular cod
 
 - All internal modules will be statically linked (embedded in the executable).
 - The final result will be a single executable.
-- [Unity](https://github.com/ThrowTheSwitch/Unity) is used for Unit Testing. The whole framework (a couple of small source files) is included in the project source, no external dependencies.
+- [Unity](https://github.com/ThrowTheSwitch/Unity) is used for Unit Testing. The whole framework (a couple of small source files) is included in the template source.
 
 <br/>
 
