@@ -2,6 +2,6 @@
 # ## tests/some_tests ###
 # #######################
 
-tests_sources(
+test_suite_sources(
   test.c
 )

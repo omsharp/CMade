@@ -39,7 +39,25 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY
 # project-wide include (headers) directory
 include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
 
-add_subdirectory(src)
+# #####################################################
+# ############ processing ./src starts here #############
+# #####################################################
+
+# add main executable
+add_executable(${PROJECT_NAME} src/main.c)
+
+# add /src as an include directory for the main executable
+target_include_directories(${PROJECT_NAME} PUBLIC src)
+
+# contains important utilities for managing modules.
+include(_cmake/Modules.cmake)
+
+# lists the modules in the system
+include(src/modules/modules.cmake)
+
+# #####################################################
+# ############ processing ./src ends here #############
+# #####################################################
 
 # compiler flags
 target_compile_options(${PROJECT_NAME} PRIVATE
@@ -57,5 +75,7 @@ if(BUILD_TESTING)
   set(CMAKE_TESTS_OUTPUT_DIRECTORY # path of tests binaries
     "${BINARIES_OUTPUT_DIRECTORY}/tests"
   )
-  add_subdirectory(tests)
+
+  include(_cmake/Tests.cmake) # macros and functions
+  include(tests/tests.cmake) # lists tests suites in the project
 endif()

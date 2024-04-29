@@ -1,3 +1,7 @@
+function(add_module module)
+  include("${CMAKE_SOURCE_DIR}/src/modules/${module}/.cmake")
+endfunction()
+
 # modules that this module depends on.
 # module_depends_on([<module>...])
 function(module_depends_on)
@@ -20,16 +24,27 @@ function(module_sources)
   # replaces white space in module_name with '_'
   string(REPLACE " " "_" module_name ${module_name})
 
+  set(sources_list)
+
+  foreach(source ${ARGV})
+    list(APPEND
+      sources_list
+      "${CMAKE_SOURCE_DIR}/src/modules/${module_name}/${source}"
+    )
+  endforeach()
+
   # add module as a static library using its source files
   add_library(${module_name}
     STATIC
-    ${ARGV}
+    ${sources_list}
   )
 
-  # include directory (current dir of this file)
+  # include directory (current dir of module)
   target_include_directories(${module_name}
     PUBLIC
-    ${CMAKE_CURRENT_LIST_DIR}
+    "${CMAKE_SOURCE_DIR}/src/modules/${module_name}"
+    "${CMAKE_SOURCE_DIR}/src/modules/${module_name}/include"
+    "${CMAKE_SOURCE_DIR}/src/modules/${module_name}/headers"
   )
 
   # link module to the project executable

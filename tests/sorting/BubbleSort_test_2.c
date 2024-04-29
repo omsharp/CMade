@@ -6,7 +6,7 @@ void tearDown(void) {}
 
 void test_BubbleSort_Double(void) {
   double array[] = {3.21, 3.41, 3.11, 3.31, 3.01};
-  bubbleSort(array, 5);
+  bubble_sort_double(array, 5);
   TEST_ASSERT_EQUAL_DOUBLE(3.01, array[0]);
   TEST_ASSERT_EQUAL_DOUBLE(3.11, array[1]);
   TEST_ASSERT_EQUAL_DOUBLE(3.21, array[2]);

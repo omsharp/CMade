@@ -51,24 +51,28 @@ If all runs fine, you'll have a bin directory with the binaries. And from now on
 <br/>
 
 ## Modules
-* Each directory inside **src/modules** represents a module in the proejct.
-* The name of the module will be the name of the directory itself.
+* Each directory inside **src/modules** represents a module in the project.
+* The name of the module will be the name of the directory itself (case sensitive).
+* A Module can be a single source file or more.
+* Header files should go into **<module_name>/include** subdirectory, can also be named **<module_name>/headers**, and they'll be accessible through the whole project.
 
 #### Add new module:
-1. Make a new directory inside **src/modules** and name it with your module's name, e.g. **Sorting**.
+1. Make a new directory inside **src/modules** and name it with your module's name, e.g. **src/modules/Sorting** for a Sorting module.
 
-2. Edit the file **src/modules/CMakeLists.txt** and at the end of file add your module's subdirectory. If you create Sorting module, then the new line should look something line
+2. Add the new module in **src/modules/modules.cmake**.
 
-        add_subdirectory(Sorting)
+        add_module(Sorting)
 
-3. In your Module's directory create a file **CMakeLists.txt**, inside it call the function **module_sources** with the source files of your module, the file content should look something like:
+3. In your new module's directory create a file named **.cmake** (yes, just .cmake, that's the whole filename). 
+        
+   In the module's **.cmake** file add the module's source files.
 
         module_sources(
           QuickSort.c
           MergeSort.c
         )
      
-     Then, if your module depends on other modules, then you'll have to call **module_depends_on()** with the names of all your dependencies (modules).
+     If your module depends on other modules, then you'll have to declare those dependencies (modules).
 
         module_depends_on(
           Utils
@@ -78,32 +82,37 @@ If all runs fine, you'll have a bin directory with the binaries. And from now on
 <br/>
 
 ## Tests
-* Each directory in **/tests/suites** represents a test suite.
-* The name of the suite will be the name of the directory itself.
+* Each directory in **/tests** represents a test suite.
+* The name of the test suite will be the name of the directory itself (case sensitive).
 * Every source file in a suite directory represents a test.
-* The test name will be the source file name without extension.
+* The test name will be the source file name without extension (case sensitive).
 * A suite should have at least one test. 
 * A test should have at least one unit of test (function).
-* The test's full name will be of the form **<suite_name>.<test_name>**.
+* A test's full name will be of the form **<suite_name>.<test_name>**.
 * Refer to [Unity's](https://github.com/ThrowTheSwitch/Unity) repo for more information on how to write tests with Unity.
 
 #### Add a new test suite:
-1. Make a new directory inside **tests/suites**, e.g **sorting** to be a test suite your **Sorting** module, and put your sorting tests source files in it.
+1. Make a new directory inside **tests**, e.g **sorting** to be a test suite for your **Sorting** module, and put your tests (source files) in it.
 
-2. Edit the file **src/tests/suites/CMakeLists.txt** and add your suite's subdirectory.
+2. Add the new test suite to **src/tests/tests.cmake**.
 
-        add_subdirectory(sorting)
+        add_test_suite(sorting)
 
-3. In your suite's directory create a file **CMakeLists.txt**, inside it call the function **tests_sources()** with the source files for your tests.
+3. In your new test suite's directory create a file named **.cmake** (yes, just .cmake, that's the whole filename). 
 
-        tests_sources(
-          bubbleSort_1.c
-          bubbleSort_2.c
+   In the suite's **.cmake** file add the tests source files.
+
+        test_suite_sources(
+          BubbleSort_test_1.c
+          BubbleSort_test_2.c
         )
 
-4. Add dependencies for the test suite by calling **tests_depends_on()** and pass the names of the modules the tests are using.
 
-        tests_depends_on(Sorting)
+   Add module dependencies for the tests. **
+
+        test_suite_depends_on(
+          Sorting
+        )
 
    ** **If your tests are not depending on any modules, then ignore this step.**
 

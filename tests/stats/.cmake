@@ -2,8 +2,10 @@
 # ## tests/sorting ###
 # ####################
 
-tests_sources(
-  copyArray.c
+test_suite_sources(
+  Median_test_1.c
 )
 
-tests_depends_on(Utils)
+test_suite_depends_on(
+  Stats
+)

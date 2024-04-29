@@ -1,9 +1,13 @@
 # holds a list of all tests in a suite (directory)
 set_property(DIRECTORY PROPERTY tests_list)
 
+function(add_test_suite suite_name)
+  include("${CMAKE_SOURCE_DIR}/tests/${suite_name}/.cmake")
+endfunction()
+
 # source files of tests in this suite.
 # tests_sources([<source>...])
-function(tests_sources sources_list)
+function(test_suite_sources sources_list)
   # get the current list of tests
   get_property(current_tests_list DIRECTORY PROPERTY tests_list)
 
@@ -11,7 +15,6 @@ function(tests_sources sources_list)
   # into variable directory_name and clean it.
   cmake_path(GET CMAKE_CURRENT_LIST_DIR FILENAME directory_name)
   string(REPLACE " " "_" directory_name ${directory_name})
-  string(REPLACE "-" "_" directory_name ${directory_name})
 
   # go through test source files,
   # process and build a test for each source file
@@ -22,13 +25,14 @@ function(tests_sources sources_list)
     set(test_name "${directory_name}.${test_name}")
 
     add_executable(${test_name}
-      ${source_file}
-      ${PROJECT_SOURCE_DIR}/tests/_unity/unity.c)
+      ${PROJECT_SOURCE_DIR}/tests/${directory_name}/${source_file}
+      ${PROJECT_SOURCE_DIR}/_external/unity/unity.c
+    )
 
     # the include directory of the Unity framework
     target_include_directories(${test_name}
       PUBLIC
-      ${PROJECT_SOURCE_DIR}/tests/_unity
+      ${PROJECT_SOURCE_DIR}/_external/unity
     )
 
     # set the binary directory for the test
@@ -51,7 +55,7 @@ endfunction()
 
 # modules that this suite of tests depends on.
 # tests_depends_on([<module>...])
-function(tests_depends_on)
+function(test_suite_depends_on)
   get_property(current_tests_list DIRECTORY PROPERTY tests_list)
 
   foreach(test_name ${current_tests_list})
