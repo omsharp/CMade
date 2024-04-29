@@ -18,12 +18,11 @@ An opinionated template, curated to build portable C projects, using modular cod
 ## Create new Project
 1. Clone this repo
 
-        > git clone git@github.com:omsharp/cmake_template.git <your_project_name>
+        git clone git@github.com:omsharp/cmake_template.git <your_project_name>
     
     You'll have to manually disconnect your local copy from the remote repo.
 
-        > cd <your_project_name>
-        > git remote remove origin
+        git remote remove origin
 
 2. Set your project name by editing **CMakeLists.txt** in the root directory.  
 Find the line bellow and set your desired project name. 
@@ -40,11 +39,11 @@ If You're using the terminal, then do this:
 
 1. Run this at the root directory of your project, to make the **build** directory and generate all the build files and configs.   
 
-        > cmake -S . -B ./build 
+        cmake -S . -B ./build 
     
 2. Run this at the root directory of your project to build.
 
-        > cmake --build ./build
+        cmake --build ./build
 
 If all runs fine, you'll have a bin directory with the binaries. And from now on you'll only need to run the second command to build the project whenever you want, unless you deleted the build directory or it got corrupted for some reason, then you'll have to run the first command again to regenerate the build system.
 
