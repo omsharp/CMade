@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "SortUtils.h"
 #include "Sorting.h"
+#include <stdint.h>
 
 void bubble_sort_double(double arr[], size_t len) {
   size_t i, j;

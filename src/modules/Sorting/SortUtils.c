@@ -1,4 +1,5 @@
 #include "SortUtils.h"
+#include <stdint.h>
 
 void swap_double(double* a, double* b) {
   double temp = *a;

@@ -4,7 +4,6 @@
 
 module_sources(
   BubbleSort.c
-  MergeSort.c
   SortUtils.c
 )
 

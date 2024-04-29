@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <unity.h>
 #include "Search.h"
 

@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "Search.h"
 #include "Sorting.h"
 #include "Stats.h"
