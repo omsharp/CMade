@@ -88,7 +88,7 @@ If all runs fine, you'll have a bin directory with the binaries. And from now on
 * Refer to [Unity's](https://github.com/ThrowTheSwitch/Unity) repo for more information on how to write tests with Unity.
 
 #### Add a new test suite:
-1. Make a new directory inside **tests/suites** and name it with your, e.g **sorting** to be a test suite your **Sorting** module, and put your sorting tests source files in it.
+1. Make a new directory inside **tests/suites**, e.g **sorting** to be a test suite your **Sorting** module, and put your sorting tests source files in it.
 
 2. Edit the file **src/tests/suites/CMakeLists.txt** and add your suite's subdirectory.
 
