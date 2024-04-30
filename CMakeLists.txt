@@ -46,27 +46,8 @@ include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
 # add main executable
 add_executable(${PROJECT_NAME} src/main.c)
 
-# todo)) still a work in progress (dynamic library linking)
-
-# setting dirs & finding files
-set(SDL2_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include/sdl2)
-set(SDL2_LIBRARY_DIR ${CMAKE_SOURCE_DIR}/libs/sdl2)
-
-# adding sdl2 include dir to the project
-target_include_directories(${PROJECT_NAME} PUBLIC ${SDL2_INCLUDE_DIR})
-
-add_library(SDL2 ${SDL2_LIBRARY_DIR}/bin/SDL2.dll)
-target_include_directories(SDL2 PUBLIC ${SDL2_INCLUDE_DIR})
-
-set_target_properties(SDL2 PROPERTIES LINKER_LANGUAGE C)
-
-message("sdl include path: ${SDL2_INCLUDE_DIR}")
-message("sdl library path: ${SDL2_LIBRARY_DIR}")
-
-# linking sdl2 to the project
-target_link_libraries(${PROJECT_NAME} SDL2)
-
-# todo)) ---------------------------------------------------
+# add external subdirectory
+add_subdirectory(external)
 
 # add /src as an include directory for the main executable
 target_include_directories(${PROJECT_NAME} PUBLIC src)

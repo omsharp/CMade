@@ -26,13 +26,13 @@ function(test_suite_sources sources_list)
 
     add_executable(${test_name}
       ${PROJECT_SOURCE_DIR}/tests/${directory_name}/${source_file}
-      ${PROJECT_SOURCE_DIR}/_external/unity/unity.c
+      ${PROJECT_SOURCE_DIR}/_unity/unity.c
     )
 
     # the include directory of the Unity framework
     target_include_directories(${test_name}
       PUBLIC
-      ${PROJECT_SOURCE_DIR}/_external/unity
+      ${PROJECT_SOURCE_DIR}/_unity
     )
 
     # set the binary directory for the test
