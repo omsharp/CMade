@@ -24,8 +24,10 @@ function(module_sources)
   # replaces white space in module_name with '_'
   string(REPLACE " " "_" module_name ${module_name})
 
+  # holds a list of test sources
   set(sources_list)
 
+  # build the list of sources from function arguments
   foreach(source ${ARGV})
     list(APPEND
       sources_list

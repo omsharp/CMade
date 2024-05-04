@@ -3,13 +3,12 @@
     Copyright (c) 2007-21 Mike Karlesky, Mark VanderVoord, Greg Williams
     [Released under MIT License. Please refer to license.txt for details]
 ========================================== */
-
-#define UNITY_INCLUDE_DOUBLE
-#define UNITY_DOUBLE_PRECISION 1e-12
-
 #ifndef UNITY_FRAMEWORK_H
 #define UNITY_FRAMEWORK_H
 #define UNITY
+
+#define UNITY_INCLUDE_DOUBLE
+#define UNITY_DOUBLE_PRECISION 1e-12
 
 #define UNITY_VERSION_MAJOR 2
 #define UNITY_VERSION_MINOR 6

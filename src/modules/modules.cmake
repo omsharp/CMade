@@ -17,3 +17,12 @@
 # so that the build system will pick the change automatically.
 # maybe I'll add a script that will touch cmake file after adding a module directory!
 # add_subdirectory(Sorting)
+
+# todo)) this could be simplified more, something like
+# add_modules(
+# Guards
+# Lists
+# )
+
+add_module(Guards)
+add_module(Lists)

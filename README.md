@@ -49,6 +49,17 @@ If all runs fine, you'll have a bin directory with the binaries. And from now on
 
 <br/>
 
+## Clean Project
+The template contains some Modules and Tests as an example, to start clean you'll have to:
+1. Delete all directories inside **src/modules**.
+2. Clear the file **src/modules/modules.cmake** (don't delete it).
+3. Delete all directories inside **tests**. 
+4. Clear the file **tests/tests.cmake** (don't delete it). 
+
+And that's it. You have a clean C project ready to play with.
+
+<br/>
+
 ## Modules
 * Each directory inside **src/modules** represents a module in the project.
 * The name of the module will be the name of the directory itself (case sensitive).
